@@ -1,46 +1,38 @@
 {
-  "info": {
-    "name": "Sanad Youth API",
-    "description": "Run \"npm run db:reset\" (seeds data) and \"npm run start:dev\" first. Then run folder 0, then the others in order.",
-    "_postman_id": "97c83b40-584a-4d8f-9796-706b0bac9cb5",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  "_": {
+    "postman_id": "97c83b40-584a-4d8f-9796-706b0bac9cb5"
   },
-  "variable": [
-    {
-      "key": "baseUrl",
-      "value": "http://localhost:3000/api",
-      "type": "string"
-    }
-  ],
   "item": [
     {
+      "id": "cb89be30-2777-4981-8ead-c5490b2fb670",
       "name": "0. Setup - login seeded accounts",
-      "description": "Run first. Saves tokens for admin, supervisor1, supervisor2, youth1, youth2.",
+      "description": {
+        "content": "Run first. Saves tokens for admin, supervisor1, supervisor2, youth1, youth2.",
+        "type": "text/plain"
+      },
       "item": [
         {
           "id": "4ae5a313-4f3f-43cc-8420-cbc971ad9c64",
           "name": "Login Admin",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.collectionVariables.set(\"adminToken\", pm.response.json().accessToken);"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"admin@sanad.org\",\n  \"password\": \"Admin@1234\"\n}",
@@ -49,43 +41,46 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        },
-        {
-          "id": "8e016b57-ab43-42ab-9a3a-9fc384e3f885",
-          "name": "Login Supervisor 1",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "6995badb-3693-4fbc-b341-0df4d1aab74a",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
                   "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.collectionVariables.set(\"supToken\", pm.response.json().accessToken);"
+                  "pm.collectionVariables.set(\"adminToken\", pm.response.json().accessToken);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "8e016b57-ab43-42ab-9a3a-9fc384e3f885",
+          "name": "Login Supervisor 1",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"supervisor1@sanad.org\",\n  \"password\": \"Super@1234\"\n}",
@@ -94,43 +89,46 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        },
-        {
-          "id": "b55833f3-6d9e-4f2c-8eaf-bc6f6b42ad0a",
-          "name": "Login Supervisor 2",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "57f765ab-0208-41f2-a3ef-330331d6d124",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
                   "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.collectionVariables.set(\"sup2Token\", pm.response.json().accessToken);"
+                  "pm.collectionVariables.set(\"supToken\", pm.response.json().accessToken);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "b55833f3-6d9e-4f2c-8eaf-bc6f6b42ad0a",
+          "name": "Login Supervisor 2",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"supervisor2@sanad.org\",\n  \"password\": \"Super@1234\"\n}",
@@ -139,43 +137,46 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        },
-        {
-          "id": "d25a0864-68bb-40e8-8e28-90960cc1fbd5",
-          "name": "Login Youth 1",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "62d6f067-e516-45bc-9972-a090139f7987",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
                   "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.collectionVariables.set(\"youth1Token\", pm.response.json().accessToken);"
+                  "pm.collectionVariables.set(\"sup2Token\", pm.response.json().accessToken);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "d25a0864-68bb-40e8-8e28-90960cc1fbd5",
+          "name": "Login Youth 1",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"youth1@sanad.org\",\n  \"password\": \"Youth@1234\"\n}",
@@ -184,43 +185,46 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        },
-        {
-          "id": "1442ef2d-a590-43f3-85fb-9166b8acf14c",
-          "name": "Login Youth 2",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "31a38eae-10b7-42ed-b8ff-8733d26326ed",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
                   "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.collectionVariables.set(\"youth2Token\", pm.response.json().accessToken);"
+                  "pm.collectionVariables.set(\"youth1Token\", pm.response.json().accessToken);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "1442ef2d-a590-43f3-85fb-9166b8acf14c",
+          "name": "Login Youth 2",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"youth2@sanad.org\",\n  \"password\": \"Youth@1234\"\n}",
@@ -229,32 +233,73 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        }
-      ]
-    },
-    {
-      "name": "1. Youth journey (DEMO)",
-      "description": "Register -> login -> browse -> details -> apply -> follow status -> accepted -> materials -> announcements -> cancel",
-      "item": [
-        {
-          "id": "8f260a11-0e3f-42f0-abe6-56949d445b1f",
-          "name": "Register new youth",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "50e8ecf8-3abd-43cc-be44-2e9b5d2c6101",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
+                  "pm.collectionVariables.set(\"youth2Token\", pm.response.json().accessToken);"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b4c5846f-5148-4884-9cc7-bd68ba15d93e",
+      "name": "1. Youth journey (DEMO)",
+      "description": {
+        "content": "Register -> login -> browse -> details -> apply -> follow status -> accepted -> materials -> announcements -> cancel",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f260a11-0e3f-42f0-abe6-56949d445b1f",
+          "name": "Register new youth",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"password\": \"Demo@12345\",\n  \"firstName\": \"Ahmad\",\n  \"lastName\": \"Demo\",\n  \"phone\": \"+963933000000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0d562028-ccc6-42ef-b586-bc1bdc4c2846",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
@@ -266,64 +311,37 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "07c33429-3e48-4ddc-b03c-9a3a5215385a",
                 "type": "text/javascript",
                 "exec": [
                   "pm.collectionVariables.set(\"newEmail\", \"demo\" + Date.now() + \"@test.com\");"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"password\": \"Demo@12345\",\n  \"firstName\": \"Ahmad\",\n  \"lastName\": \"Demo\",\n  \"phone\": \"+963933000000\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "63550ce0-add6-4c15-8514-ec7c29c79fda",
           "name": "Register same email again -> 409",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Duplicate email rejected\", () => pm.response.to.have.status(409));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"password\": \"Demo@12345\",\n  \"firstName\": \"Ahmad\",\n  \"lastName\": \"Demo\"\n}",
@@ -332,43 +350,44 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
             }
-          }
-        },
-        {
-          "id": "732d99cd-0a7a-401b-b76c-c0db85d8ada0",
-          "name": "Login",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "98aa9eff-64ac-49ff-bed9-0da64ea2db2c",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.collectionVariables.set(\"demoToken\", pm.response.json().accessToken);"
+                  "pm.test(\"Duplicate email rejected\", () => pm.response.to.have.status(409));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "732d99cd-0a7a-401b-b76c-c0db85d8ada0",
+          "name": "Login",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"password\": \"Demo@12345\"\n}",
@@ -377,26 +396,53 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        },
-        {
-          "id": "3c228c98-1fca-4b2a-8677-c7c87c3b81b9",
-          "name": "My profile (me)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "c6eddb49-23f8-4fa5-a357-53c3c26b39a9",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
+                  "pm.collectionVariables.set(\"demoToken\", pm.response.json().accessToken);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "3c228c98-1fca-4b2a-8677-c7c87c3b81b9",
+          "name": "My profile (me)",
+          "request": {
+            "url": {
+              "path": [
+                "auth",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e93c1ac1-ad6e-44d3-9e7b-651c2ba8d057",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -404,45 +450,23 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/auth/me",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "me"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "b443d984-cea6-4dc9-bf95-1c2330733de8",
           "name": "Update my profile",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
-                  "pm.test(\"Phone updated\", () => pm.expect(pm.response.json().phone).to.eql(\"+963944111222\"));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -453,6 +477,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "PATCH",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"phone\": \"+963944111222\"\n}",
@@ -461,50 +486,34 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/users/me",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "users",
-                "me"
-              ]
             }
-          }
-        },
-        {
-          "id": "b1966040-f7d1-4971-9939-6dd9bb2b6294",
-          "name": "Browse programs (page 1, limit 5)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "7cf70ae0-572d-4f93-93b5-8a39f0bcb60d",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
-                  "const r = pm.response.json();",
-                  "pm.test(\"Paginated\", () => { pm.expect(r.data.length).to.be.at.most(5); pm.expect(r.meta).to.have.property(\"totalPages\"); });"
+                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
+                  "pm.test(\"Phone updated\", () => pm.expect(pm.response.json().phone).to.eql(\"+963944111222\"));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "b1966040-f7d1-4971-9939-6dd9bb2b6294",
+          "name": "Browse programs (page 1, limit 5)",
           "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/programs?page=1&limit=5",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
               ],
               "query": [
                 {
@@ -515,39 +524,43 @@
                   "key": "limit",
                   "value": "5"
                 }
-              ]
-            }
-          }
-        },
-        {
-          "id": "fc4f7356-e536-4286-a607-52fb140b909d",
-          "name": "Browse programs page 2",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
+              ],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6c2be086-a4b1-43a0-872f-7a2153cf2d8b",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "const r = pm.response.json();",
+                  "pm.test(\"Paginated\", () => { pm.expect(r.data.length).to.be.at.most(5); pm.expect(r.meta).to.have.property(\"totalPages\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "fc4f7356-e536-4286-a607-52fb140b909d",
+          "name": "Browse programs page 2",
+          "request": {
             "url": {
-              "raw": "{{baseUrl}}/programs?page=2&limit=5",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
               ],
               "query": [
                 {
@@ -558,17 +571,64 @@
                   "key": "limit",
                   "value": "5"
                 }
-              ]
-            }
-          }
-        },
-        {
-          "id": "e72c8285-d213-431d-9256-fbde579393b9",
-          "name": "Search programs \"nest\"",
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "565e27bd-daae-4d7c-ad68-08e4259b7b53",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "e72c8285-d213-431d-9256-fbde579393b9",
+          "name": "Search programs \"nest\"",
+          "request": {
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "nest"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "41625423-ec47-46dd-af2b-8ee7f5b7b7ac",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -578,39 +638,37 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "c32380e2-d0ed-4c89-8793-281a8c9a61ac",
+          "name": "Program details (supervisor, seats, sessions)",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs?search=nest",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ],
-              "query": [
-                {
-                  "key": "search",
-                  "value": "nest"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "id": "c32380e2-d0ed-4c89-8793-281a8c9a61ac",
-          "name": "Program details (supervisor, seats, sessions)",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "e69d02e3-90d8-41fd-9126-d5195161450d",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -624,53 +682,35 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "a62adc90-7a53-4c4e-9b76-d9982cee211a",
           "name": "Apply (with optional CV)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
-                  "const a = pm.response.json();",
-                  "pm.test(\"Status is PENDING\", () => pm.expect(a.status).to.eql(\"PENDING\"));",
-                  "pm.collectionVariables.set(\"applicationId\", a.id);"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "POST",
+            "description": {
+              "content": "form-data. To attach a CV: enable the \"cv\" row and pick a PDF file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "description": "form-data. To attach a CV: enable the \"cv\" row and pick a PDF file.",
+            "method": "POST",
             "body": {
               "mode": "formdata",
               "formdata": [
@@ -685,100 +725,133 @@
                   "src": "postman/samples/cv.pdf"
                 }
               ]
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "applications"
-              ]
             }
-          }
-        },
-        {
-          "id": "ad2cd614-dbc6-4d5f-bf47-0c44077349e0",
-          "name": "Seat was reserved (availableSeats - 1)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "48890954-21b7-493a-a69c-467c89ffc648",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "const a = pm.response.json();",
+                  "pm.test(\"Status is PENDING\", () => pm.expect(a.status).to.eql(\"PENDING\"));",
+                  "pm.collectionVariables.set(\"applicationId\", a.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "ad2cd614-dbc6-4d5f-bf47-0c44077349e0",
+          "name": "Seat was reserved (availableSeats - 1)",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6dc1ac3e-77e7-41a3-828d-4f228030db60",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"One seat less\", () => pm.expect(pm.response.json().availableSeats).to.eql(Number(pm.collectionVariables.get(\"seatsBefore\")) - 1));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "fca190b6-63af-4e95-8163-f24b7e0a9191",
+          "name": "Apply twice -> 409",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}"
-              ]
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
             }
-          }
-        },
-        {
-          "id": "fca190b6-63af-4e95-8163-f24b7e0a9191",
-          "name": "Apply twice -> 409",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "88e7bc8c-101e-47e6-88a9-9d188a15f44f",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Cannot apply twice to the same program\", () => pm.response.to.have.status(409));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "09659ba5-ad65-4a60-8f57-62d257eba17f",
+          "name": "My applications (PENDING)",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "applications",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "applications"
-              ]
-            }
-          }
-        },
-        {
-          "id": "09659ba5-ad65-4a60-8f57-62d257eba17f",
-          "name": "My applications (PENDING)",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "7a5d391b-fdb8-4845-a2df-6ce897a7c2db",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -786,34 +859,37 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "b96ebe3a-e2d8-4aa8-9310-0cb4cc739a19",
+          "name": "Get one of my applications",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "applications",
+                "{{applicationId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/me",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "me"
-              ]
-            }
-          }
-        },
-        {
-          "id": "b96ebe3a-e2d8-4aa8-9310-0cb4cc739a19",
-          "name": "Get one of my applications",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "57952ee4-ca21-4cc2-9f85-dc042d236d01",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -821,34 +897,38 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "51fa5072-c7c6-48e6-835a-5531e562b9e2",
+          "name": "Download my CV",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "applications",
+                "{{applicationId}}",
+                "cv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{applicationId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "51fa5072-c7c6-48e6-835a-5531e562b9e2",
-          "name": "Download my CV",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "203ba5b8-ccee-4b2b-a717-c2d0efc06bee",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -856,70 +936,76 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "bdfb6b65-c5a6-45e0-92a0-1d7745525439",
+          "name": "Materials while PENDING -> 403",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}/cv",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{applicationId}}",
-                "cv"
-              ]
-            }
-          }
-        },
-        {
-          "id": "bdfb6b65-c5a6-45e0-92a0-1d7745525439",
-          "name": "Materials while PENDING -> 403",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "7f957054-f3c4-4af8-b09d-e5098b27466d",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Not accepted yet => no materials\", () => pm.response.to.have.status(403));"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "6cb1b3dd-d681-45a4-85b1-ff8f5c92ae9c",
           "name": "[Admin] Accept application",
+          "request": {
+            "url": {
+              "path": [
+                "applications",
+                "{{applicationId}}",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "method": "PATCH"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "d849ae86-3349-46bc-80ab-204baefac016",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -927,35 +1013,42 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{adminToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}/accept",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{applicationId}}",
-                "accept"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "2e8e0048-2355-4efd-b112-cc39ff70cb1d",
           "name": "My applications (ACCEPTED)",
+          "request": {
+            "url": {
+              "path": [
+                "applications",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACCEPTED"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "12280872-5287-4d3c-8ee5-6d150cbee63b",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -963,40 +1056,38 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "1b6266f7-a796-4898-abc2-038d696b68d0",
+          "name": "Materials when ACCEPTED -> 200",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/me?status=ACCEPTED",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "me"
-              ],
-              "query": [
-                {
-                  "key": "status",
-                  "value": "ACCEPTED"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "id": "1b6266f7-a796-4898-abc2-038d696b68d0",
-          "name": "Materials when ACCEPTED -> 200",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "5386c034-f81c-4ec2-a20e-7f7d20065c5d",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -1005,103 +1096,112 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "3fca7e58-6714-4e5e-901a-fa5948055b4a",
           "name": "Announcements feed (general + my programs)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "announcements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/announcements",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "announcements"
-              ]
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c95833f3-2f58-4261-9f89-6dca489efb06",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
             }
-          }
+          ]
         },
         {
           "id": "cfc63220-d07e-473f-b0f5-b11baeabcc1d",
           "name": "Program announcements",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "announcements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/announcements",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "announcements"
-              ]
-            }
-          }
-        },
-        {
-          "id": "97bc807a-55b2-4b60-ab71-741215d24493",
-          "name": "Cancel my application",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "32f5e241-99f4-4630-8878-e4645940949e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "97bc807a-55b2-4b60-ab71-741215d24493",
+          "name": "Cancel my application",
+          "request": {
+            "url": {
+              "path": [
+                "applications",
+                "{{applicationId}}",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "method": "PATCH"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9ddd65c8-d1af-468b-aa84-ce6f2514a0c1",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -1109,109 +1209,132 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "d1ddfd84-ae3d-4537-86ea-554d05a3c886",
+          "name": "Seat returned after cancel",
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}/cancel",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{applicationId}}",
-                "cancel"
-              ]
-            }
-          }
-        },
-        {
-          "id": "d1ddfd84-ae3d-4537-86ea-554d05a3c886",
-          "name": "Seat returned after cancel",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "7ca41a3b-fc36-4073-80ac-68c49dcf947f",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Seat back\", () => pm.expect(pm.response.json().availableSeats).to.eql(Number(pm.collectionVariables.get(\"seatsBefore\"))));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "7f6c9db6-29df-4595-a609-72e311c22e05",
+          "name": "Cancel again -> 409",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "applications",
+                "{{applicationId}}",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{demoToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "7f6c9db6-29df-4595-a609-72e311c22e05",
-          "name": "Cancel again -> 409",
+            "method": "PATCH"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "4ba28005-7e8f-43a9-a4db-46d33b5b120b",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Cannot cancel twice (seat not freed twice)\", () => pm.response.to.have.status(409));"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}/cancel",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{applicationId}}",
-                "cancel"
-              ]
-            }
-          }
+          ]
         }
-      ]
+      ],
+      "event": []
     },
     {
+      "id": "c851e8ef-04c0-41fb-9577-6355efb2a2f8",
       "name": "2. Admin",
       "item": [
         {
           "id": "2a4d2725-5fcd-4296-b6d5-997b4e698bd2",
           "name": "Create supervisor",
+          "request": {
+            "url": {
+              "path": [
+                "users",
+                "supervisors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{supEmail}}\",\n  \"password\": \"Super@1234\",\n  \"firstName\": \"New\",\n  \"lastName\": \"Supervisor\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "080e77f7-e789-4997-bd0a-a06b16c4a928",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
@@ -1224,76 +1347,25 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "be6422f4-759c-48f3-9a67-a3b299d088dc",
                 "type": "text/javascript",
                 "exec": [
                   "pm.collectionVariables.set(\"supEmail\", \"sup\" + Date.now() + \"@sanad.org\");"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{adminToken}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"{{supEmail}}\",\n  \"password\": \"Super@1234\",\n  \"firstName\": \"New\",\n  \"lastName\": \"Supervisor\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/users/supervisors",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "users",
-                "supervisors"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "58e8f28e-cae4-4d7f-8ed1-cb4ceb0583e6",
           "name": "List users (filter role + pagination)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{adminToken}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/users?role=SUPERVISOR&page=1&limit=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
               ],
               "query": [
                 {
@@ -1308,26 +1380,46 @@
                   "key": "limit",
                   "value": "10"
                 }
-              ]
-            }
-          }
-        },
-        {
-          "id": "ec10137e-dd0e-432e-8814-8b8e8ecf7915",
-          "name": "Create program for a supervisor",
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "ce5a5545-8b07-4018-8735-6fb478ee35af",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));"
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "ec10137e-dd0e-432e-8814-8b8e8ecf7915",
+          "name": "Create program for a supervisor",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1338,6 +1430,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Admin Created Program\",\n  \"description\": \"Program created by admin for a supervisor.\",\n  \"capacity\": 10,\n  \"supervisorId\": \"{{newSupId}}\"\n}",
@@ -1346,47 +1439,32 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ]
             }
-          }
-        },
-        {
-          "id": "0e14eb31-e779-457f-a589-9b832776101a",
-          "name": "All applications (PENDING)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "914c0b50-dfe4-49b4-a767-43192f8756f0",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "0e14eb31-e779-457f-a589-9b832776101a",
+          "name": "All applications (PENDING)",
           "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{adminToken}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/applications?status=PENDING&page=1&limit=10",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
               ],
               "query": [
                 {
@@ -1401,17 +1479,65 @@
                   "key": "limit",
                   "value": "10"
                 }
-              ]
-            }
-          }
-        },
-        {
-          "id": "369d7390-1772-4467-80dd-96188fa236e8",
-          "name": "Youth2 applies (to be rejected)",
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "4409b467-4afe-4225-bf59-e38efee06ad5",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "369d7390-1772-4467-80dd-96188fa236e8",
+          "name": "Youth2 applies (to be rejected)",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{youth2Token}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8de9dd48-e683-4a00-934c-463f5a8f0674",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"201 or 409 if re-run\", () => pm.expect(pm.response.code).to.be.oneOf([201, 409]));",
@@ -1419,84 +1545,60 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{youth2Token}}"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "applications"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "f330378e-4638-4daf-aec6-c65a21c560f1",
           "name": "Reject application",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"200 or 409 if already rejected\", () => pm.expect(pm.response.code).to.be.oneOf([200, 409]));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "applications",
+                "{{rejectAppId}}",
+                "reject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{adminToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{rejectAppId}}/reject",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{rejectAppId}}",
-                "reject"
-              ]
-            }
-          }
-        },
-        {
-          "id": "a93d7600-c57b-423d-9b84-121f9b6d62c6",
-          "name": "Create GENERAL announcement",
+            "method": "PATCH"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "4c11fcdb-c505-45bf-95fc-871007ec7e68",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
-                  "pm.collectionVariables.set(\"announcementId\", pm.response.json().id);"
+                  "pm.test(\"200 or 409 if already rejected\", () => pm.expect(pm.response.code).to.be.oneOf([200, 409]));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "a93d7600-c57b-423d-9b84-121f9b6d62c6",
+          "name": "Create GENERAL announcement",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "announcements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1507,6 +1609,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Holiday notice\",\n  \"content\": \"The center is closed on Friday.\"\n}",
@@ -1515,67 +1618,74 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/announcements",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "announcements"
-              ]
             }
-          }
-        },
-        {
-          "id": "7c39cedf-8861-4ef1-8fe7-8041b4aa2374",
-          "name": "Youth sees it (cache invalidated)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "153dd1b7-3757-4e23-8c8b-e08c0daf2806",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Newest first = Holiday notice\", () => pm.expect(pm.response.json().data[0].title).to.eql(\"Holiday notice\"));"
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.collectionVariables.set(\"announcementId\", pm.response.json().id);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "7c39cedf-8861-4ef1-8fe7-8041b4aa2374",
+          "name": "Youth sees it (cache invalidated)",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "announcements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{youth1Token}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/announcements",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "announcements"
-              ]
-            }
-          }
-        },
-        {
-          "id": "46c59aa9-9d71-4d1b-b0d0-42c1e28df775",
-          "name": "Edit announcement",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "2dcb18bb-0423-42a1-a797-af7f08e490c8",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                  "pm.test(\"Newest first = Holiday notice\", () => pm.expect(pm.response.json().data[0].title).to.eql(\"Holiday notice\"));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "46c59aa9-9d71-4d1b-b0d0-42c1e28df775",
+          "name": "Edit announcement",
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "announcements",
+                "{{announcementId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1586,6 +1696,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "PATCH",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Holiday notice (updated)\"\n}",
@@ -1594,141 +1705,152 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/announcements/{{announcementId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "announcements",
-                "{{announcementId}}"
-              ]
             }
-          }
-        },
-        {
-          "id": "bd8e2b72-8c2e-4df9-bad5-19502ff15bbb",
-          "name": "Youth sees latest version (not stale cache)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Updated title visible\", () => pm.expect(pm.response.json().data[0].title).to.eql(\"Holiday notice (updated)\"));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{youth1Token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/announcements",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "announcements"
-              ]
-            }
-          }
-        },
-        {
-          "id": "250ed71c-11c5-4df0-a194-5467d8e465d4",
-          "name": "Delete announcement",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
+                "id": "b768b8d3-88ba-4f60-bf6f-0e1ea07e8518",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "bd8e2b72-8c2e-4df9-bad5-19502ff15bbb",
+          "name": "Youth sees latest version (not stale cache)",
           "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{adminToken}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/announcements/{{announcementId}}",
+              "path": [
+                "announcements"
+              ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "path": [
-                "announcements",
-                "{{announcementId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "833b7cb4-686a-4cdc-8f70-243afc1e65bc",
-          "name": "Deleted announcement gone from feed",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Not in feed anymore\", () => pm.expect(pm.response.json().data.map(a => a.id)).to.not.include(Number(pm.collectionVariables.get(\"announcementId\"))));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{youth1Token}}"
               }
             ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0a442e56-9d6e-4893-9c14-ac5120d42c53",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Updated title visible\", () => pm.expect(pm.response.json().data[0].title).to.eql(\"Holiday notice (updated)\"));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "250ed71c-11c5-4df0-a194-5467d8e465d4",
+          "name": "Delete announcement",
+          "request": {
             "url": {
-              "raw": "{{baseUrl}}/announcements",
+              "path": [
+                "announcements",
+                "{{announcementId}}"
+              ],
               "host": [
                 "{{baseUrl}}"
               ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "750b21d7-e2a5-4bd9-905e-6a8b51b28003",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "833b7cb4-686a-4cdc-8f70-243afc1e65bc",
+          "name": "Deleted announcement gone from feed",
+          "request": {
+            "url": {
               "path": [
                 "announcements"
-              ]
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{youth1Token}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "532a4705-d9d3-42e1-882e-a99e256dfbe7",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Not in feed anymore\", () => pm.expect(pm.response.json().data.map(a => a.id)).to.not.include(Number(pm.collectionVariables.get(\"announcementId\"))));"
+                ]
+              }
             }
-          }
+          ]
         }
-      ]
+      ],
+      "event": []
     },
     {
+      "id": "b93b0fff-6f8c-4fef-8b4a-008660c170da",
       "name": "3. Supervisor",
       "item": [
         {
           "id": "64805f6f-39e4-46b2-a11a-ca04a6a3072f",
           "name": "Create my program",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
-                  "pm.collectionVariables.set(\"myProgramId\", pm.response.json().id);"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1739,6 +1861,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Git & GitHub Workshop\",\n  \"description\": \"Version control for teams, from zero.\",\n  \"capacity\": 15\n}",
@@ -1747,35 +1870,39 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ]
             }
-          }
-        },
-        {
-          "id": "d97caa33-e7f4-4692-b241-7e8a932b268d",
-          "name": "Add session (place)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "89dbd9bd-65a4-4b60-a000-52e87c47969d",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
-                  "pm.collectionVariables.set(\"sessionId\", pm.response.json().id);"
+                  "pm.collectionVariables.set(\"myProgramId\", pm.response.json().id);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "d97caa33-e7f4-4692-b241-7e8a932b268d",
+          "name": "Add session (place)",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1786,6 +1913,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Intro\",\n  \"startsAt\": \"2026-12-01T10:00:00.000Z\",\n  \"endsAt\": \"2026-12-01T12:00:00.000Z\",\n  \"location\": \"Hall B\"\n}",
@@ -1794,36 +1922,39 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}/sessions",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}",
-                "sessions"
-              ]
             }
-          }
-        },
-        {
-          "id": "d8315c36-3836-4004-8a99-14c209561869",
-          "name": "Add session invalid dates -> 400",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "2768fcc0-5857-4a8f-be37-28a44d3bb78f",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.collectionVariables.set(\"sessionId\", pm.response.json().id);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "d8315c36-3836-4004-8a99-14c209561869",
+          "name": "Add session invalid dates -> 400",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1834,6 +1965,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Bad\",\n  \"startsAt\": \"2026-12-01T12:00:00.000Z\",\n  \"endsAt\": \"2026-12-01T10:00:00.000Z\",\n  \"meetingUrl\": \"https://zoom.us/j/1\"\n}",
@@ -1842,36 +1974,39 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}/sessions",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}",
-                "sessions"
-              ]
             }
-          }
-        },
-        {
-          "id": "3ad1812a-f20e-4fed-b9f2-3482eaaa8463",
-          "name": "Update session (online link)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "ab4ef99a-a064-4517-8a72-77aeaeb8919c",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "3ad1812a-f20e-4fed-b9f2-3482eaaa8463",
+          "name": "Update session (online link)",
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}",
+                "sessions",
+                "{{sessionId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -1882,6 +2017,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "PATCH",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"meetingUrl\": \"https://meet.google.com/xyz\"\n}",
@@ -1890,44 +2026,49 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}/sessions/{{sessionId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}",
-                "sessions",
-                "{{sessionId}}"
-              ]
             }
-          }
-        },
-        {
-          "id": "e2a50021-96d5-4b23-9ed2-3d344bf9f9aa",
-          "name": "Upload program image",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "bb31e951-73ed-4082-8d04-a05021674a99",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"201 with imageUrl\", () => { pm.response.to.have.status(201); pm.expect(pm.response.json().imageUrl).to.include(\"/uploads/images/\"); });"
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "e2a50021-96d5-4b23-9ed2-3d344bf9f9aa",
+          "name": "Upload program image",
           "request": {
-            "method": "POST",
+            "description": {
+              "content": "form-data: pick a .jpg/.png/.webp (max 2MB) in the \"image\" row.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}",
+                "image"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "description": "form-data: pick a .jpg/.png/.webp (max 2MB) in the \"image\" row.",
+            "method": "POST",
             "body": {
               "mode": "formdata",
               "formdata": [
@@ -1937,44 +2078,49 @@
                   "src": "postman/samples/program.png"
                 }
               ]
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}/image",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}",
-                "image"
-              ]
             }
-          }
-        },
-        {
-          "id": "fa0343c8-3a7e-4ca6-9e72-80ee3c2e798a",
-          "name": "Upload material to NestJS program",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "12ee6fd7-21a4-4c7f-ac8e-af6b17744279",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"201\", () => pm.response.to.have.status(201));",
-                  "if (pm.response.code === 201) pm.collectionVariables.set(\"materialId\", pm.response.json().id);"
+                  "pm.test(\"201 with imageUrl\", () => { pm.response.to.have.status(201); pm.expect(pm.response.json().imageUrl).to.include(\"/uploads/images/\"); });"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "fa0343c8-3a7e-4ca6-9e72-80ee3c2e798a",
+          "name": "Upload material to NestJS program",
           "request": {
-            "method": "POST",
+            "description": {
+              "content": "form-data: title + file (.pdf/.pptx/.docx/.zip/.jpg/.png, max 20MB).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "description": "form-data: title + file (.pdf/.pptx/.docx/.zip/.jpg/.png, max 20MB).",
+            "method": "POST",
             "body": {
               "mode": "formdata",
               "formdata": [
@@ -1989,43 +2135,50 @@
                   "src": "postman/samples/week1-slides.pdf"
                 }
               ]
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials"
-              ]
             }
-          }
-        },
-        {
-          "id": "605299d5-040c-44be-99fd-e2c8bd9381b0",
-          "name": "Upload wrong file type -> 400",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "74da1367-29c9-4562-8386-6fcede2fcd0c",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
+                  "pm.test(\"201\", () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set(\"materialId\", pm.response.json().id);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "605299d5-040c-44be-99fd-e2c8bd9381b0",
+          "name": "Upload wrong file type -> 400",
           "request": {
-            "method": "POST",
+            "description": {
+              "content": "Pick a .txt or .exe file to see the rejection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "description": "Pick a .txt or .exe file to see the rejection.",
+            "method": "POST",
             "body": {
               "mode": "formdata",
               "formdata": [
@@ -2040,27 +2193,52 @@
                   "src": "postman/samples/virus.txt"
                 }
               ]
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials"
-              ]
             }
-          }
-        },
-        {
-          "id": "dc8cd3a9-ea45-4c0b-9549-6092b7a6ed0a",
-          "name": "List materials (supervisor)",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "7f2ecc31-3395-41b5-9274-7dbf8c53ed73",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "dc8cd3a9-ea45-4c0b-9549-6092b7a6ed0a",
+          "name": "List materials (supervisor)",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6dee5085-f040-48ce-a45c-c6394328e465",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -2068,35 +2246,40 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "441f1086-93c2-4fb5-a026-046162c8ef15",
+          "name": "Download material",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials",
+                "{{materialId}}",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials"
-              ]
-            }
-          }
-        },
-        {
-          "id": "441f1086-93c2-4fb5-a026-046162c8ef15",
-          "name": "Download material",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "6eef0392-b997-4ad7-8e04-00c94b1fefc1",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
@@ -2104,188 +2287,178 @@
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "b5e9d217-1b83-4d85-8900-7fb1e075cee9",
+          "name": "Delete material",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials",
+                "{{materialId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}/download",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials",
-                "{{materialId}}",
-                "download"
-              ]
-            }
-          }
-        },
-        {
-          "id": "b5e9d217-1b83-4d85-8900-7fb1e075cee9",
-          "name": "Delete material",
+            "method": "DELETE"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "cb98cf0b-e593-4d79-8f3e-18584621bd84",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "c3ac5b26-f434-4e18-a3d6-e55142f4901f",
+          "name": "Download deleted material -> 404",
           "request": {
-            "method": "DELETE",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials",
+                "{{materialId}}",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials",
-                "{{materialId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "c3ac5b26-f434-4e18-a3d6-e55142f4901f",
-          "name": "Download deleted material -> 404",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "f0b3ff08-9413-49cb-b97b-6b67127edd8a",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{supToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}/download",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials",
-                "{{materialId}}",
-                "download"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "9eb0a54d-67fc-451b-937d-c37d3c427d13",
           "name": "My programs",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "mine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/mine",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "mine"
-              ]
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "856461f2-6644-440e-adce-042909298745",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
             }
-          }
+          ]
         },
         {
           "id": "be8d9745-30d6-48aa-873b-81714c6e2bea",
           "name": "Applications of my program",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "applications"
-              ]
-            }
-          }
-        },
-        {
-          "id": "e4e35a24-9302-49b7-a9b6-6a8903616257",
-          "name": "Program announcement",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "26b97d80-ac92-4884-a1f5-a9a89b303a78",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));"
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "e4e35a24-9302-49b7-a9b6-6a8903616257",
+          "name": "Program announcement",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs",
+                "{{programId}}",
+                "announcements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -2296,6 +2469,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Bring your laptop\",\n  \"content\": \"Session 1 is hands-on.\"\n}",
@@ -2304,75 +2478,78 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/announcements",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "announcements"
-              ]
             }
-          }
-        },
-        {
-          "id": "bd8d826c-9973-4e47-8b67-d8d7781e2221",
-          "name": "Find a program of supervisor 2",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "31559f77-6da0-4b39-bbe9-d014915a983c",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.collectionVariables.set(\"otherProgramId\", pm.response.json().data[0].id);"
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "bd8d826c-9973-4e47-8b67-d8d7781e2221",
+          "name": "Find a program of supervisor 2",
           "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{supToken}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/programs?search=Public%20Speaking",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
               ],
               "query": [
                 {
                   "key": "search",
                   "value": "Public%20Speaking"
                 }
-              ]
-            }
-          }
-        },
-        {
-          "id": "d6b42a2e-e2db-425c-b629-0849788c3119",
-          "name": "Edit another supervisor's program -> 403",
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "2ad615c8-abb9-4fa5-b586-e432899f018a",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Supervisor cannot touch programs of others\", () => pm.response.to.have.status(403));"
+                  "pm.collectionVariables.set(\"otherProgramId\", pm.response.json().data[0].id);"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "d6b42a2e-e2db-425c-b629-0849788c3119",
+          "name": "Edit another supervisor's program -> 403",
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "programs",
+                "{{otherProgramId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -2383,6 +2560,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "PATCH",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"Hacked\"\n}",
@@ -2391,71 +2569,75 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{otherProgramId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{otherProgramId}}"
-              ]
             }
-          }
-        },
-        {
-          "id": "5dce9b80-3f1b-42e5-a71a-d13dce61c9ab",
-          "name": "See another supervisor's applications -> 403",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "a0227a95-ab59-4199-82ed-0ffcc8e4f472",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
+                  "pm.test(\"Supervisor cannot touch programs of others\", () => pm.response.to.have.status(403));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "5dce9b80-3f1b-42e5-a71a-d13dce61c9ab",
+          "name": "See another supervisor's applications -> 403",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{otherProgramId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{otherProgramId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{otherProgramId}}",
-                "applications"
-              ]
-            }
-          }
-        },
-        {
-          "id": "5e73f267-5fad-41c1-b47e-a46379f775a6",
-          "name": "Change capacity (available seats recalculated)",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "17418b48-6590-4cd2-91b1-92a0b2be9a7a",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
-                  "pm.test(\"availableSeats = 5\", () => pm.expect(pm.response.json().availableSeats).to.eql(5));"
+                  "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "5e73f267-5fad-41c1-b47e-a46379f775a6",
+          "name": "Change capacity (available seats recalculated)",
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -2466,6 +2648,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "PATCH",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"capacity\": 5\n}",
@@ -2474,198 +2657,233 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}"
-              ]
             }
-          }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "246954b1-3ef1-4442-9773-71a29f94e8e6",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"availableSeats = 5\", () => pm.expect(pm.response.json().availableSeats).to.eql(5));"
+                ]
+              }
+            }
+          ]
         },
         {
           "id": "b8f27993-bc8f-4177-94ec-1b05d0924d01",
           "name": "Supervisor downloads an applicant's CV",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{supToken}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}/cv",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "applications",
                 "{{applicationId}}",
                 "cv"
-              ]
-            }
-          }
-        },
-        {
-          "id": "c3502c10-1568-4033-b5b5-e3ada1cef067",
-          "name": "Delete session",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "9b3232be-cd4a-4603-8ef2-1a7d03927103",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "c3502c10-1568-4033-b5b5-e3ada1cef067",
+          "name": "Delete session",
+          "request": {
             "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}/sessions/{{sessionId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "programs",
                 "{{myProgramId}}",
                 "sessions",
                 "{{sessionId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "a37cb1ed-1049-4771-95a5-01fa6bba634a",
-          "name": "Delete my program",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "DELETE",
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{supToken}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "21f0b8a6-c518-4a13-8467-f4a25f7114d2",
-          "name": "Deleted program -> 404",
+            "method": "DELETE"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "3c9f4daf-b1cf-4669-8f54-3134fea1af15",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a37cb1ed-1049-4771-95a5-01fa6bba634a",
+          "name": "Delete my program",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "54d07708-3764-4f3f-9f82-8684cefbccf8",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "21f0b8a6-c518-4a13-8467-f4a25f7114d2",
+          "name": "Deleted program -> 404",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{myProgramId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d630fe97-bba6-4b7e-b514-dd6ebef2c57c",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{supToken}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{myProgramId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{myProgramId}}"
-              ]
-            }
-          }
+          ]
         }
-      ]
+      ],
+      "event": []
     },
     {
+      "id": "1cefa9c8-ca79-40b0-a4d5-534826b8d375",
       "name": "4. Security & edge cases",
       "item": [
         {
           "id": "c5ef081d-bd58-49ea-a206-5a6b526027e8",
           "name": "No token -> 401",
+          "request": {
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "0dc70753-2815-4cc6-81d3-c8f65382a7fd",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 401\", () => pm.response.to.have.status(401));"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/programs",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "bff32171-717e-47d9-87de-05c3ac291162",
           "name": "Fake token -> 401",
+          "request": {
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "bede63ff-e4d4-4640-911a-3fe261b92618",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 401\", () => pm.response.to.have.status(401));"
@@ -2675,43 +2893,29 @@
             {
               "listen": "prerequest",
               "script": {
+                "id": "bbe9e278-3ecf-4f35-9267-f691b89b4bb9",
                 "type": "text/javascript",
                 "exec": [
                   "pm.request.headers.upsert({ key: \"Authorization\", value: \"Bearer abc.def.ghi\" });"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/programs",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "71bdbbe3-f637-4a51-9786-28f35e990ca1",
           "name": "Youth creates program -> 403",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -2722,6 +2926,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"x\",\n  \"description\": \"xxxxxxxxxxxx\",\n  \"capacity\": 1\n}",
@@ -2730,75 +2935,82 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ]
             }
-          }
-        },
-        {
-          "id": "39d1ec1b-270b-4180-b843-45b596754a72",
-          "name": "Youth accepts application -> 403",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "b9a9c45d-0694-47ab-a3e7-ce8fc963c3d0",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "39d1ec1b-270b-4180-b843-45b596754a72",
+          "name": "Youth accepts application -> 403",
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "applications",
+                "1",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{youth1Token}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/1/accept",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "1",
-                "accept"
-              ]
-            }
-          }
-        },
-        {
-          "id": "639595f7-88c0-4393-add3-e48fa31f3252",
-          "name": "Register trying role ADMIN -> 400",
+            "method": "PATCH"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "6faacb60-4750-4b70-a98a-a33e6b05e7db",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Unknown field \\\"role\\\" rejected (whitelist)\", () => pm.response.to.have.status(400));"
+                  "pm.test(\"Status is 403\", () => pm.response.to.have.status(403));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "639595f7-88c0-4393-add3-e48fa31f3252",
+          "name": "Register trying role ADMIN -> 400",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"hacker@test.com\",\n  \"password\": \"Hacker@123\",\n  \"firstName\": \"h\",\n  \"lastName\": \"h\",\n  \"role\": \"ADMIN\"\n}",
@@ -2807,41 +3019,44 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
             }
-          }
-        },
-        {
-          "id": "24f15750-a673-46a0-b9f0-20638614fbea",
-          "name": "Validation: bad email + short password -> 400",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "754e9692-f0e3-479d-ac0d-f8c9f822d47d",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
+                  "pm.test(\"Unknown field \\\"role\\\" rejected (whitelist)\", () => pm.response.to.have.status(400));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "24f15750-a673-46a0-b9f0-20638614fbea",
+          "name": "Validation: bad email + short password -> 400",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "auth",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"not-an-email\",\n  \"password\": \"123\",\n  \"firstName\": \"\",\n  \"lastName\": \"x\"\n}",
@@ -2850,115 +3065,126 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/register",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "register"
-              ]
             }
-          }
-        },
-        {
-          "id": "d82a5252-d775-4117-8ec6-1b7e5783dd2b",
-          "name": "Pagination limit too big -> 400",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "9ce62f04-afb6-46dd-8165-626e5623ad72",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "d82a5252-d775-4117-8ec6-1b7e5783dd2b",
+          "name": "Pagination limit too big -> 400",
           "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{youth1Token}}"
-              }
-            ],
             "url": {
-              "raw": "{{baseUrl}}/programs?limit=1000",
-              "host": [
-                "{{baseUrl}}"
-              ],
               "path": [
                 "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
               ],
               "query": [
                 {
                   "key": "limit",
                   "value": "1000"
                 }
-              ]
-            }
-          }
-        },
-        {
-          "id": "955edce4-a6be-48b7-aaf7-a192006c1557",
-          "name": "Youth reads someone else's application -> 404",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Not visible to other youth\", () => pm.response.to.have.status(404));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
+              ],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{youth1Token}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{applicationId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{applicationId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "acf56826-2699-4e95-ba95-927d702d65b7",
-          "name": "Wrong password -> 401 (run 6x -> 429)",
+            "method": "GET"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "1bc3992f-9929-4760-94b7-21e0d6f64117",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"401 or 429\", () => pm.expect(pm.response.code).to.be.oneOf([401, 429]));"
+                  "pm.test(\"Status is 400\", () => pm.response.to.have.status(400));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "955edce4-a6be-48b7-aaf7-a192006c1557",
+          "name": "Youth reads someone else's application -> 404",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "applications",
+                "{{applicationId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{youth1Token}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "051955c5-f6e5-4627-a7bb-1917275e1656",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Not visible to other youth\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "acf56826-2699-4e95-ba95-927d702d65b7",
+          "name": "Wrong password -> 401 (run 6x -> 429)",
+          "request": {
+            "description": {
+              "content": "Send this 6 times quickly: attempts 1-5 = 401, attempt 6 = 429 Too Many Requests (brute force protection).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "description": "Send this 6 times quickly: attempts 1-5 = 401, attempt 6 = 429 Too Many Requests (brute force protection).",
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"youth30@sanad.org\",\n  \"password\": \"wrong-password\"\n}",
@@ -2967,42 +3193,47 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/auth/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "auth",
-                "login"
-              ]
             }
-          }
-        }
-      ]
-    },
-    {
-      "name": "5. Last seat (sequential version)",
-      "description": "True simultaneous test: npm run test:last-seat",
-      "item": [
-        {
-          "id": "8195f1bf-55aa-40a8-b8fb-67d518e5333d",
-          "name": "Create 1-seat program",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "302e6762-4824-4186-a752-6d7ce1e71a56",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
-                  "pm.collectionVariables.set(\"oneSeatId\", pm.response.json().id);"
+                  "pm.test(\"401 or 429\", () => pm.expect(pm.response.code).to.be.oneOf([401, 429]));"
                 ]
               }
             }
-          ],
+          ]
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3d4ff7ed-f025-4f9c-b041-3ccb34fb232b",
+      "name": "5. Last seat (sequential version)",
+      "description": {
+        "content": "True simultaneous test: npm run test:last-seat",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8195f1bf-55aa-40a8-b8fb-67d518e5333d",
+          "name": "Create 1-seat program",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
@@ -3013,6 +3244,7 @@
                 "value": "application/json"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"One Seat Only\",\n  \"description\": \"Exactly one seat for the demo.\",\n  \"capacity\": 1\n}",
@@ -3021,25 +3253,57 @@
                   "language": "json"
                 }
               }
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs"
-              ]
             }
-          }
-        },
-        {
-          "id": "200c41af-25b3-4963-8b20-8433a722ccbe",
-          "name": "Youth1 takes the last seat -> 201",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "1c522206-9e02-4b97-970b-43e329330f91",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
+                  "pm.collectionVariables.set(\"oneSeatId\", pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "200c41af-25b3-4963-8b20-8433a722ccbe",
+          "name": "Youth1 takes the last seat -> 201",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{oneSeatId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{youth1Token}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0012b0a8-e4ae-4b6b-8bc5-1de9e4e2c862",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));",
@@ -3047,39 +3311,42 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{youth1Token}}"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{oneSeatId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{oneSeatId}}",
-                "applications"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "395a332d-a547-41ac-afd9-866a5de0e24f",
           "name": "Youth2 -> 409 No seats left",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{oneSeatId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{youth2Token}}"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "e4d9558b-164b-465b-8206-6f0feba2d87a",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 409\", () => pm.response.to.have.status(409));",
@@ -3087,175 +3354,181 @@
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{youth2Token}}"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": []
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{oneSeatId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{oneSeatId}}",
-                "applications"
-              ]
-            }
-          }
+          ]
         },
         {
           "id": "01e5d83e-eab3-4f37-8f0f-27fe1687ff28",
           "name": "Youth1 cancels -> seat freed",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
           "request": {
-            "method": "PATCH",
+            "url": {
+              "path": [
+                "applications",
+                "{{seatAppId}}",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{youth1Token}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/applications/{{seatAppId}}/cancel",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "applications",
-                "{{seatAppId}}",
-                "cancel"
-              ]
-            }
-          }
-        },
-        {
-          "id": "b8ac76fc-9ce6-4368-aaf1-67ab0ff77bba",
-          "name": "Youth2 now gets it -> 201",
+            "method": "PATCH"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "75f939ee-2833-4b10-b47c-94c96b94fc18",
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));"
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "b8ac76fc-9ce6-4368-aaf1-67ab0ff77bba",
+          "name": "Youth2 now gets it -> 201",
           "request": {
-            "method": "POST",
+            "url": {
+              "path": [
+                "programs",
+                "{{oneSeatId}}",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{youth2Token}}"
               }
             ],
+            "method": "POST",
             "body": {
               "mode": "formdata",
               "formdata": []
-            },
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{oneSeatId}}/applications",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{oneSeatId}}",
-                "applications"
-              ]
             }
-          }
-        },
-        {
-          "id": "c45197b5-2f1c-43c4-97e3-25dc9a1e3330",
-          "name": "Seats = 0, never negative",
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "98959423-39ec-439f-bfd0-3120f8052dc7",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "c45197b5-2f1c-43c4-97e3-25dc9a1e3330",
+          "name": "Seats = 0, never negative",
+          "request": {
+            "url": {
+              "path": [
+                "programs",
+                "{{oneSeatId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sup2Token}}"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "79fb6e3a-913e-4891-961b-b7ae1489e4b1",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"availableSeats = 0\", () => pm.expect(pm.response.json().availableSeats).to.eql(0));"
                 ]
               }
             }
-          ],
+          ]
+        },
+        {
+          "id": "53d19469-0dcc-4737-aabb-911442396dff",
+          "name": "Delete program with active applications -> 409",
           "request": {
-            "method": "GET",
+            "url": {
+              "path": [
+                "programs",
+                "{{oneSeatId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
             "header": [
               {
                 "key": "Authorization",
                 "value": "Bearer {{sup2Token}}"
               }
             ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{oneSeatId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{oneSeatId}}"
-              ]
-            }
-          }
-        },
-        {
-          "id": "53d19469-0dcc-4737-aabb-911442396dff",
-          "name": "Delete program with active applications -> 409",
+            "method": "DELETE"
+          },
+          "response": [],
           "event": [
             {
               "listen": "test",
               "script": {
+                "id": "612ded86-adc2-4d91-a882-b57dbfeb7ff7",
                 "type": "text/javascript",
                 "exec": [
                   "pm.test(\"Status is 409\", () => pm.response.to.have.status(409));"
                 ]
               }
             }
-          ],
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{sup2Token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{oneSeatId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{oneSeatId}}"
-              ]
-            }
-          }
+          ]
         }
-      ]
+      ],
+      "event": []
     }
-  ]
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:3000/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "97c83b40-584a-4d8f-9796-706b0bac9cb5",
+    "name": "Sanad Youth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Run \"npm run db:reset\" (seeds data) and \"npm run start:dev\" first. Then run folder 0, then the others in order.",
+      "type": "text/plain"
+    }
+  }
 }
