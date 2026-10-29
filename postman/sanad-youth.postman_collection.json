@@ -2,7 +2,7 @@
   "info": {
     "name": "Sanad Youth API",
     "description": "Run \"npm run db:reset\" (seeds data) and \"npm run start:dev\" first. Then run folder 0, then the others in order.",
-    "_postman_id": "da05d166-06c7-4f02-a5d8-fce60674bdad",
+    "_postman_id": "97c83b40-584a-4d8f-9796-706b0bac9cb5",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -18,7 +18,7 @@
       "description": "Run first. Saves tokens for admin, supervisor1, supervisor2, youth1, youth2.",
       "item": [
         {
-          "id": "d7da0adb-7c89-42dd-9165-c1c0047ce317",
+          "id": "4ae5a313-4f3f-43cc-8420-cbc971ad9c64",
           "name": "Login Admin",
           "event": [
             {
@@ -63,7 +63,7 @@
           }
         },
         {
-          "id": "68c8389f-61d8-4563-97fb-f0b41f7e88f7",
+          "id": "8e016b57-ab43-42ab-9a3a-9fc384e3f885",
           "name": "Login Supervisor 1",
           "event": [
             {
@@ -108,7 +108,7 @@
           }
         },
         {
-          "id": "01a92b29-ffd7-4c5b-9cf0-482696e2dead",
+          "id": "b55833f3-6d9e-4f2c-8eaf-bc6f6b42ad0a",
           "name": "Login Supervisor 2",
           "event": [
             {
@@ -153,7 +153,7 @@
           }
         },
         {
-          "id": "d04055fb-f5bd-4bbe-98cf-3bff4226ab93",
+          "id": "d25a0864-68bb-40e8-8e28-90960cc1fbd5",
           "name": "Login Youth 1",
           "event": [
             {
@@ -198,7 +198,7 @@
           }
         },
         {
-          "id": "49a325f1-51a5-4c80-ac6b-9d923b5a6f44",
+          "id": "1442ef2d-a590-43f3-85fb-9166b8acf14c",
           "name": "Login Youth 2",
           "event": [
             {
@@ -249,7 +249,7 @@
       "description": "Register -> login -> browse -> details -> apply -> follow status -> accepted -> materials -> announcements -> cancel",
       "item": [
         {
-          "id": "32a8719b-32f4-493e-b576-1d3ccf4989b8",
+          "id": "8f260a11-0e3f-42f0-abe6-56949d445b1f",
           "name": "Register new youth",
           "event": [
             {
@@ -303,7 +303,7 @@
           }
         },
         {
-          "id": "feb9cac5-8c92-487a-83da-c300316e519d",
+          "id": "63550ce0-add6-4c15-8514-ec7c29c79fda",
           "name": "Register same email again -> 409",
           "event": [
             {
@@ -346,7 +346,7 @@
           }
         },
         {
-          "id": "5e2f4523-6e6d-4cec-84f1-47886b3f8f5b",
+          "id": "732d99cd-0a7a-401b-b76c-c0db85d8ada0",
           "name": "Login",
           "event": [
             {
@@ -391,7 +391,7 @@
           }
         },
         {
-          "id": "79626426-8ab9-4b95-9328-d38c83394f5e",
+          "id": "3c228c98-1fca-4b2a-8677-c7c87c3b81b9",
           "name": "My profile (me)",
           "event": [
             {
@@ -426,7 +426,56 @@
           }
         },
         {
-          "id": "a734237d-dce6-4832-bba8-dfa8f3da546c",
+          "id": "b443d984-cea6-4dc9-bf95-1c2330733de8",
+          "name": "Update my profile",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"No password in response\", () => pm.expect(pm.response.text()).to.not.include(\"password\"));",
+                  "pm.test(\"Phone updated\", () => pm.expect(pm.response.json().phone).to.eql(\"+963944111222\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+963944111222\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b1966040-f7d1-4971-9939-6dd9bb2b6294",
           "name": "Browse programs (page 1, limit 5)",
           "event": [
             {
@@ -471,7 +520,7 @@
           }
         },
         {
-          "id": "6c6d642e-820d-4af3-94d7-0ab99977e019",
+          "id": "fc4f7356-e536-4286-a607-52fb140b909d",
           "name": "Browse programs page 2",
           "event": [
             {
@@ -514,7 +563,7 @@
           }
         },
         {
-          "id": "30d7c00f-fb45-4e22-9426-d15c1e30bbab",
+          "id": "e72c8285-d213-431d-9256-fbde579393b9",
           "name": "Search programs \"nest\"",
           "event": [
             {
@@ -556,7 +605,7 @@
           }
         },
         {
-          "id": "316847c7-6709-4ed8-9533-2fdcc8d13759",
+          "id": "c32380e2-d0ed-4c89-8793-281a8c9a61ac",
           "name": "Program details (supervisor, seats, sessions)",
           "event": [
             {
@@ -597,7 +646,7 @@
           }
         },
         {
-          "id": "87a8bd5f-dae1-4af7-88f9-9d01799ce81a",
+          "id": "a62adc90-7a53-4c4e-9b76-d9982cee211a",
           "name": "Apply (with optional CV)",
           "event": [
             {
@@ -651,7 +700,7 @@
           }
         },
         {
-          "id": "d319f44a-3d84-45de-b47c-bcf63478f21a",
+          "id": "ad2cd614-dbc6-4d5f-bf47-0c44077349e0",
           "name": "Seat was reserved (availableSeats - 1)",
           "event": [
             {
@@ -685,7 +734,7 @@
           }
         },
         {
-          "id": "526db442-692d-40f0-999f-583f114cab02",
+          "id": "fca190b6-63af-4e95-8163-f24b7e0a9191",
           "name": "Apply twice -> 409",
           "event": [
             {
@@ -724,7 +773,7 @@
           }
         },
         {
-          "id": "38c3ff24-ae60-4db9-86cb-8e120eba0e02",
+          "id": "09659ba5-ad65-4a60-8f57-62d257eba17f",
           "name": "My applications (PENDING)",
           "event": [
             {
@@ -759,7 +808,78 @@
           }
         },
         {
-          "id": "5ff3e840-8109-46db-880f-574d1b8b518f",
+          "id": "b96ebe3a-e2d8-4aa8-9310-0cb4cc739a19",
+          "name": "Get one of my applications",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Has CV, path hidden\", () => { pm.expect(pm.response.json().hasCv).to.eql(true); pm.expect(pm.response.text()).to.not.include(\"cvPath\"); });"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications/{{applicationId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications",
+                "{{applicationId}}"
+              ]
+            }
+          }
+        },
+        {
+          "id": "51fa5072-c7c6-48e6-835a-5531e562b9e2",
+          "name": "Download my CV",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Is a PDF\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"pdf\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{demoToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications/{{applicationId}}/cv",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications",
+                "{{applicationId}}",
+                "cv"
+              ]
+            }
+          }
+        },
+        {
+          "id": "bdfb6b65-c5a6-45e0-92a0-1d7745525439",
           "name": "Materials while PENDING -> 403",
           "event": [
             {
@@ -794,7 +914,7 @@
           }
         },
         {
-          "id": "e5c8a144-dfc8-4edb-b32d-8d16c70b614e",
+          "id": "6cb1b3dd-d681-45a4-85b1-ff8f5c92ae9c",
           "name": "[Admin] Accept application",
           "event": [
             {
@@ -830,7 +950,7 @@
           }
         },
         {
-          "id": "30f5e526-56fa-4698-9f9a-fad872b501d6",
+          "id": "2e8e0048-2355-4efd-b112-cc39ff70cb1d",
           "name": "My applications (ACCEPTED)",
           "event": [
             {
@@ -871,7 +991,7 @@
           }
         },
         {
-          "id": "50045596-d2a7-4c77-82c7-2733403c0802",
+          "id": "1b6266f7-a796-4898-abc2-038d696b68d0",
           "name": "Materials when ACCEPTED -> 200",
           "event": [
             {
@@ -908,35 +1028,7 @@
           }
         },
         {
-          "id": "2eb2121b-943a-4830-93ea-7837ac702609",
-          "name": "Download material",
-          "event": [],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{demoToken}}"
-              }
-            ],
-            "description": "Works after folder 3 uploaded a material to this program.",
-            "url": {
-              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}/download",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "programs",
-                "{{programId}}",
-                "materials",
-                "{{materialId}}",
-                "download"
-              ]
-            }
-          }
-        },
-        {
-          "id": "ade96e1e-d387-41a8-8058-6fc891314535",
+          "id": "3fca7e58-6714-4e5e-901a-fa5948055b4a",
           "name": "Announcements feed (general + my programs)",
           "event": [
             {
@@ -969,7 +1061,7 @@
           }
         },
         {
-          "id": "79e8667e-76c2-4d96-a03b-48baf52ac294",
+          "id": "cfc63220-d07e-473f-b0f5-b11baeabcc1d",
           "name": "Program announcements",
           "event": [
             {
@@ -1004,7 +1096,7 @@
           }
         },
         {
-          "id": "497a4c93-bd77-4ea4-8751-fcbcb558e7a5",
+          "id": "97bc807a-55b2-4b60-ab71-741215d24493",
           "name": "Cancel my application",
           "event": [
             {
@@ -1040,7 +1132,7 @@
           }
         },
         {
-          "id": "37e95168-307d-4920-b983-ebefa478f00c",
+          "id": "d1ddfd84-ae3d-4537-86ea-554d05a3c886",
           "name": "Seat returned after cancel",
           "event": [
             {
@@ -1074,7 +1166,7 @@
           }
         },
         {
-          "id": "8b46b99d-9183-44bd-9f0b-dadff0c4444a",
+          "id": "7f6c9db6-29df-4595-a609-72e311c22e05",
           "name": "Cancel again -> 409",
           "event": [
             {
@@ -1114,7 +1206,7 @@
       "name": "2. Admin",
       "item": [
         {
-          "id": "afccd7ae-0bac-4364-9b99-6d2c5786bbf2",
+          "id": "2a4d2725-5fcd-4296-b6d5-997b4e698bd2",
           "name": "Create supervisor",
           "event": [
             {
@@ -1173,7 +1265,7 @@
           }
         },
         {
-          "id": "0c7aca9c-834e-4ea9-befa-be5891b01830",
+          "id": "58e8f28e-cae4-4d7f-8ed1-cb4ceb0583e6",
           "name": "List users (filter role + pagination)",
           "event": [
             {
@@ -1221,7 +1313,7 @@
           }
         },
         {
-          "id": "6c92a575-47b2-4d3d-b8c4-f9e032fc026e",
+          "id": "ec10137e-dd0e-432e-8814-8b8e8ecf7915",
           "name": "Create program for a supervisor",
           "event": [
             {
@@ -1267,7 +1359,7 @@
           }
         },
         {
-          "id": "7b353c1d-eee6-4b38-afd9-82a334e7bcf5",
+          "id": "0e14eb31-e779-457f-a589-9b832776101a",
           "name": "All applications (PENDING)",
           "event": [
             {
@@ -1314,7 +1406,7 @@
           }
         },
         {
-          "id": "ffe511f8-de7a-4278-909b-af4386b02720",
+          "id": "369d7390-1772-4467-80dd-96188fa236e8",
           "name": "Youth2 applies (to be rejected)",
           "event": [
             {
@@ -1354,7 +1446,7 @@
           }
         },
         {
-          "id": "d379d6c2-8e5c-4e57-8714-45d40b94e561",
+          "id": "f330378e-4638-4daf-aec6-c65a21c560f1",
           "name": "Reject application",
           "event": [
             {
@@ -1389,7 +1481,7 @@
           }
         },
         {
-          "id": "45e65b83-8199-4df8-b31f-a3d7cf7133a2",
+          "id": "a93d7600-c57b-423d-9b84-121f9b6d62c6",
           "name": "Create GENERAL announcement",
           "event": [
             {
@@ -1436,7 +1528,7 @@
           }
         },
         {
-          "id": "465f6088-5cac-4968-9747-19d8eeefb4c5",
+          "id": "7c39cedf-8861-4ef1-8fe7-8041b4aa2374",
           "name": "Youth sees it (cache invalidated)",
           "event": [
             {
@@ -1469,7 +1561,7 @@
           }
         },
         {
-          "id": "3a21143f-4743-46bd-a918-601a06372fe5",
+          "id": "46c59aa9-9d71-4d1b-b0d0-42c1e28df775",
           "name": "Edit announcement",
           "event": [
             {
@@ -1516,7 +1608,7 @@
           }
         },
         {
-          "id": "1760dc12-ad73-4b6f-b56d-5d9af3933411",
+          "id": "bd8e2b72-8c2e-4df9-bad5-19502ff15bbb",
           "name": "Youth sees latest version (not stale cache)",
           "event": [
             {
@@ -1547,6 +1639,73 @@
               ]
             }
           }
+        },
+        {
+          "id": "250ed71c-11c5-4df0-a194-5467d8e465d4",
+          "name": "Delete announcement",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{adminToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/announcements/{{announcementId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "announcements",
+                "{{announcementId}}"
+              ]
+            }
+          }
+        },
+        {
+          "id": "833b7cb4-686a-4cdc-8f70-243afc1e65bc",
+          "name": "Deleted announcement gone from feed",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Not in feed anymore\", () => pm.expect(pm.response.json().data.map(a => a.id)).to.not.include(Number(pm.collectionVariables.get(\"announcementId\"))));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{youth1Token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/announcements",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "announcements"
+              ]
+            }
+          }
         }
       ]
     },
@@ -1554,7 +1713,7 @@
       "name": "3. Supervisor",
       "item": [
         {
-          "id": "e3de3a60-f386-4415-9366-c6f465c2e5da",
+          "id": "64805f6f-39e4-46b2-a11a-ca04a6a3072f",
           "name": "Create my program",
           "event": [
             {
@@ -1601,7 +1760,7 @@
           }
         },
         {
-          "id": "d98aea61-fb3a-4fb7-abe0-83c1b20b598d",
+          "id": "d97caa33-e7f4-4692-b241-7e8a932b268d",
           "name": "Add session (place)",
           "event": [
             {
@@ -1650,7 +1809,7 @@
           }
         },
         {
-          "id": "ec019310-75a2-4934-9408-324576db987c",
+          "id": "d8315c36-3836-4004-8a99-14c209561869",
           "name": "Add session invalid dates -> 400",
           "event": [
             {
@@ -1698,7 +1857,7 @@
           }
         },
         {
-          "id": "0837ef62-64a9-475e-aa3a-a3d9513471fa",
+          "id": "3ad1812a-f20e-4fed-b9f2-3482eaaa8463",
           "name": "Update session (online link)",
           "event": [
             {
@@ -1747,7 +1906,7 @@
           }
         },
         {
-          "id": "b636a62d-d886-4730-b038-57067312b56c",
+          "id": "e2a50021-96d5-4b23-9ed2-3d344bf9f9aa",
           "name": "Upload program image",
           "event": [
             {
@@ -1793,7 +1952,7 @@
           }
         },
         {
-          "id": "e00fa237-ee04-4778-8332-64b49e05e3fa",
+          "id": "fa0343c8-3a7e-4ca6-9e72-80ee3c2e798a",
           "name": "Upload material to NestJS program",
           "event": [
             {
@@ -1845,7 +2004,7 @@
           }
         },
         {
-          "id": "e7af223f-6de2-4604-b41e-600cee8bbef4",
+          "id": "605299d5-040c-44be-99fd-e2c8bd9381b0",
           "name": "Upload wrong file type -> 400",
           "event": [
             {
@@ -1896,7 +2055,154 @@
           }
         },
         {
-          "id": "08064cbd-f4d3-4ff4-a54d-4e4b07e9477f",
+          "id": "dc8cd3a9-ea45-4c0b-9549-6092b7a6ed0a",
+          "name": "List materials (supervisor)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Server path hidden\", () => pm.expect(pm.response.text()).to.not.include(\"filePath\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{programId}}/materials",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials"
+              ]
+            }
+          }
+        },
+        {
+          "id": "441f1086-93c2-4fb5-a026-046162c8ef15",
+          "name": "Download material",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Is a PDF\", () => pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"pdf\"));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials",
+                "{{materialId}}",
+                "download"
+              ]
+            }
+          }
+        },
+        {
+          "id": "b5e9d217-1b83-4d85-8900-7fb1e075cee9",
+          "name": "Delete material",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials",
+                "{{materialId}}"
+              ]
+            }
+          }
+        },
+        {
+          "id": "c3ac5b26-f434-4e18-a3d6-e55142f4901f",
+          "name": "Download deleted material -> 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{programId}}/materials/{{materialId}}/download",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{programId}}",
+                "materials",
+                "{{materialId}}",
+                "download"
+              ]
+            }
+          }
+        },
+        {
+          "id": "9eb0a54d-67fc-451b-937d-c37d3c427d13",
           "name": "My programs",
           "event": [
             {
@@ -1930,7 +2236,7 @@
           }
         },
         {
-          "id": "41ec0b4d-c0ec-47c3-bc78-97f531d382a9",
+          "id": "be8d9745-30d6-48aa-873b-81714c6e2bea",
           "name": "Applications of my program",
           "event": [
             {
@@ -1965,7 +2271,7 @@
           }
         },
         {
-          "id": "11b2ce81-6100-4297-94fe-de7d4b23932b",
+          "id": "e4e35a24-9302-49b7-a9b6-6a8903616257",
           "name": "Program announcement",
           "event": [
             {
@@ -2013,7 +2319,7 @@
           }
         },
         {
-          "id": "b76fa58f-8703-469a-b287-c2a1dbdf02b3",
+          "id": "bd8d826c-9973-4e47-8b67-d8d7781e2221",
           "name": "Find a program of supervisor 2",
           "event": [
             {
@@ -2052,7 +2358,7 @@
           }
         },
         {
-          "id": "5744fdb3-cbcd-4572-bb29-b160ccc1424b",
+          "id": "d6b42a2e-e2db-425c-b629-0849788c3119",
           "name": "Edit another supervisor's program -> 403",
           "event": [
             {
@@ -2099,7 +2405,7 @@
           }
         },
         {
-          "id": "931218f8-7ac9-46b4-b7f9-ea03fe1ff7ba",
+          "id": "5dce9b80-3f1b-42e5-a71a-d13dce61c9ab",
           "name": "See another supervisor's applications -> 403",
           "event": [
             {
@@ -2134,7 +2440,7 @@
           }
         },
         {
-          "id": "2248be51-db2e-4422-9a90-83ff240283b9",
+          "id": "5e73f267-5fad-41c1-b47e-a46379f775a6",
           "name": "Change capacity (available seats recalculated)",
           "event": [
             {
@@ -2180,6 +2486,145 @@
               ]
             }
           }
+        },
+        {
+          "id": "b8f27993-bc8f-4177-94ec-1b05d0924d01",
+          "name": "Supervisor downloads an applicant's CV",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applications/{{applicationId}}/cv",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applications",
+                "{{applicationId}}",
+                "cv"
+              ]
+            }
+          }
+        },
+        {
+          "id": "c3502c10-1568-4033-b5b5-e3ada1cef067",
+          "name": "Delete session",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{myProgramId}}/sessions/{{sessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{myProgramId}}",
+                "sessions",
+                "{{sessionId}}"
+              ]
+            }
+          }
+        },
+        {
+          "id": "a37cb1ed-1049-4771-95a5-01fa6bba634a",
+          "name": "Delete my program",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{myProgramId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{myProgramId}}"
+              ]
+            }
+          }
+        },
+        {
+          "id": "21f0b8a6-c518-4a13-8467-f4a25f7114d2",
+          "name": "Deleted program -> 404",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 404\", () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{supToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{myProgramId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{myProgramId}}"
+              ]
+            }
+          }
         }
       ]
     },
@@ -2187,7 +2632,7 @@
       "name": "4. Security & edge cases",
       "item": [
         {
-          "id": "12c0f86b-1f48-4e31-b2fd-9ea7d3af7dbd",
+          "id": "c5ef081d-bd58-49ea-a206-5a6b526027e8",
           "name": "No token -> 401",
           "event": [
             {
@@ -2215,7 +2660,7 @@
           }
         },
         {
-          "id": "6f326779-e0fd-414d-8872-2a2577652b56",
+          "id": "bff32171-717e-47d9-87de-05c3ac291162",
           "name": "Fake token -> 401",
           "event": [
             {
@@ -2252,7 +2697,7 @@
           }
         },
         {
-          "id": "7b7883b4-5e16-4a8d-b414-3a7f831f015b",
+          "id": "71bdbbe3-f637-4a51-9786-28f35e990ca1",
           "name": "Youth creates program -> 403",
           "event": [
             {
@@ -2298,7 +2743,7 @@
           }
         },
         {
-          "id": "ea92a22d-7d53-4644-a167-3b13520c25fb",
+          "id": "39d1ec1b-270b-4180-b843-45b596754a72",
           "name": "Youth accepts application -> 403",
           "event": [
             {
@@ -2333,7 +2778,7 @@
           }
         },
         {
-          "id": "cb5b795a-caa7-40b0-a4b7-fff750c3c47a",
+          "id": "639595f7-88c0-4393-add3-e48fa31f3252",
           "name": "Register trying role ADMIN -> 400",
           "event": [
             {
@@ -2376,7 +2821,7 @@
           }
         },
         {
-          "id": "62b4d188-2ef5-4bf1-b840-2ad3898e0d1d",
+          "id": "24f15750-a673-46a0-b9f0-20638614fbea",
           "name": "Validation: bad email + short password -> 400",
           "event": [
             {
@@ -2419,7 +2864,7 @@
           }
         },
         {
-          "id": "ed122706-edfd-47cb-a398-a9af474a3f72",
+          "id": "d82a5252-d775-4117-8ec6-1b7e5783dd2b",
           "name": "Pagination limit too big -> 400",
           "event": [
             {
@@ -2458,7 +2903,7 @@
           }
         },
         {
-          "id": "aa7d41d9-156b-4590-b2db-10cfcedb1ac5",
+          "id": "955edce4-a6be-48b7-aaf7-a192006c1557",
           "name": "Youth reads someone else's application -> 404",
           "event": [
             {
@@ -2492,7 +2937,7 @@
           }
         },
         {
-          "id": "e0647cf9-f641-44a0-a9cc-bb7338d69184",
+          "id": "acf56826-2699-4e95-ba95-927d702d65b7",
           "name": "Wrong password -> 401 (run 6x -> 429)",
           "event": [
             {
@@ -2542,7 +2987,7 @@
       "description": "True simultaneous test: npm run test:last-seat",
       "item": [
         {
-          "id": "52113409-4213-4e1a-bd33-1ae67989481c",
+          "id": "8195f1bf-55aa-40a8-b8fb-67d518e5333d",
           "name": "Create 1-seat program",
           "event": [
             {
@@ -2589,7 +3034,7 @@
           }
         },
         {
-          "id": "5a9dad5a-c754-4248-9eaf-980e6f63ff1e",
+          "id": "200c41af-25b3-4963-8b20-8433a722ccbe",
           "name": "Youth1 takes the last seat -> 201",
           "event": [
             {
@@ -2629,7 +3074,7 @@
           }
         },
         {
-          "id": "15c95983-0810-480f-b4ab-307ef9db3ded",
+          "id": "395a332d-a547-41ac-afd9-866a5de0e24f",
           "name": "Youth2 -> 409 No seats left",
           "event": [
             {
@@ -2669,7 +3114,7 @@
           }
         },
         {
-          "id": "ed061ec7-cd94-40df-ba29-bbb2af191f33",
+          "id": "01e5d83e-eab3-4f37-8f0f-27fe1687ff28",
           "name": "Youth1 cancels -> seat freed",
           "event": [
             {
@@ -2704,7 +3149,7 @@
           }
         },
         {
-          "id": "e4f20d3f-6b3a-44f5-8acd-928799d284ca",
+          "id": "b8ac76fc-9ce6-4368-aaf1-67ab0ff77bba",
           "name": "Youth2 now gets it -> 201",
           "event": [
             {
@@ -2743,7 +3188,7 @@
           }
         },
         {
-          "id": "f546c0a1-7eb8-4b4c-b49b-b0059cdd557f",
+          "id": "c45197b5-2f1c-43c4-97e3-25dc9a1e3330",
           "name": "Seats = 0, never negative",
           "event": [
             {
@@ -2758,6 +3203,40 @@
           ],
           "request": {
             "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{sup2Token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/programs/{{oneSeatId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "programs",
+                "{{oneSeatId}}"
+              ]
+            }
+          }
+        },
+        {
+          "id": "53d19469-0dcc-4737-aabb-911442396dff",
+          "name": "Delete program with active applications -> 409",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 409\", () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
             "header": [
               {
                 "key": "Authorization",

@@ -58,7 +58,3 @@ export function uploadOptions(kind: UploadKind): MulterOptions {
     },
   };
 }
-
-export function relativePath(file: Express.Multer.File) {
-  return file.path.replace(/\\/g, '/');
-}

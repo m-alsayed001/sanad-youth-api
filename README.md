@@ -21,7 +21,7 @@ npm run start:dev             # http://localhost:3000/api
 |---|---|
 | `npm run db:reset` | drop DB, re-apply migrations, re-seed |
 | `npm run db:seed` | seed only |
-| `npm run test:api` | runs the whole Postman collection from the terminal (66 requests, 86 assertions) |
+| `npm run test:api` | runs the whole Postman collection from the terminal (79 requests, 106 assertions, all 35 endpoints) |
 | `npm run test:last-seat` | **20 youth apply to a 1-seat program at the same instant** |
 
 > Port 3000 busy? Set `PORT=3001` in `.env`, then run the tests with
@@ -114,6 +114,8 @@ erDiagram
 ---
 
 ## 3. Endpoints (prefix `/api`)
+
+Full explanation of every endpoint (body, rules, responses, errors): **[ENDPOINTS.md](ENDPOINTS.md)**.
 
 | Method | Path | Who | Notes |
 |---|---|---|---|
