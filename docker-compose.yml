@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: sanad-db
+    environment:
+      POSTGRES_USER: sanad
+      POSTGRES_PASSWORD: sanad
+      POSTGRES_DB: sanad_youth
+    ports:
+      - '5433:5432' # 5433 on the host so it doesn't clash with a local PostgreSQL
+    volumes:
+      - sanad-db-data:/var/lib/postgresql/data
+
+volumes:
+  sanad-db-data:

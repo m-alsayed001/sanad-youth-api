@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+uploads/*
+!uploads/.gitkeep
+src/generated
+_original
+*.tsbuildinfo
+AUDIT_REPORT.md
+PITCH_GUIDE.md

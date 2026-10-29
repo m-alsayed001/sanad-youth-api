@@ -1,0 +1,138 @@
+// Sanad Youth platform - database schema
+// Entities: User, Program, Session, Material, Application, Announcement
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN // موظف المؤسسة
+  SUPERVISOR // المشرف (مدرب / مسؤول برنامج)
+  YOUTH // الشاب (المستفيد)
+}
+
+enum ProgramStatus {
+  ACTIVE // visible + accepting applications
+  CLOSED // visible to its people, no new applications
+}
+
+enum ApplicationStatus {
+  PENDING // قيد المراجعة
+  ACCEPTED // مقبول
+  REJECTED // مرفوض
+  CANCELLED // ملغى
+}
+
+enum AnnouncementScope {
+  GENERAL // for all youth (admin only)
+  PROGRAM // for youth accepted in one program
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String // bcrypt hash, globally omitted from every query (see PrismaService)
+  firstName String
+  lastName  String
+  phone     String?
+  role      Role     @default(YOUTH)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  supervisedPrograms Program[]      @relation("ProgramSupervisor") // 1 supervisor -> N programs
+  applications       Application[]  @relation("ApplicationYouth") // 1 youth -> N applications
+  reviewedApps       Application[]  @relation("ApplicationReviewer") // admin who decided
+  announcements      Announcement[] // author
+}
+
+model Program {
+  id             Int           @id @default(autoincrement())
+  title          String
+  description    String
+  imagePath      String? // file is on disk, DB only keeps the path
+  capacity       Int // total seats
+  availableSeats Int // seats left; decremented atomically on every new application
+  status         ProgramStatus @default(ACTIVE)
+  supervisorId   Int
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  supervisor    User           @relation("ProgramSupervisor", fields: [supervisorId], references: [id])
+  sessions      Session[]
+  materials     Material[]
+  applications  Application[]
+  announcements Announcement[]
+
+  @@index([title])
+  @@index([supervisorId])
+}
+
+model Session {
+  id         Int      @id @default(autoincrement())
+  programId  Int
+  title      String
+  startsAt   DateTime
+  endsAt     DateTime
+  location   String? // physical place
+  meetingUrl String? // or online link
+  program    Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@index([programId, startsAt])
+}
+
+model Material {
+  id           Int      @id @default(autoincrement())
+  programId    Int
+  title        String
+  filePath     String // relative path in uploads/, not the file bytes
+  originalName String
+  mimeType     String
+  size         Int
+  createdAt    DateTime @default(now())
+  program      Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@index([programId])
+}
+
+// Join table of the many-to-many  User(youth) <-> Program, with extra data (status, cv...)
+model Application {
+  id           Int               @id @default(autoincrement())
+  youthId      Int
+  programId    Int
+  status       ApplicationStatus @default(PENDING)
+  cvPath       String?
+  motivation   String?
+  reviewedById Int?
+  reviewedAt   DateTime?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  youth      User    @relation("ApplicationYouth", fields: [youthId], references: [id], onDelete: Cascade)
+  program    Program @relation(fields: [programId], references: [id], onDelete: Cascade)
+  reviewedBy User?   @relation("ApplicationReviewer", fields: [reviewedById], references: [id])
+
+  @@unique([youthId, programId]) // a youth can never apply twice to the same program
+  @@index([programId, status])
+}
+
+model Announcement {
+  id        Int               @id @default(autoincrement())
+  title     String
+  content   String
+  scope     AnnouncementScope
+  programId Int? // null when GENERAL
+  authorId  Int
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  program Program? @relation(fields: [programId], references: [id], onDelete: Cascade)
+  author  User     @relation(fields: [authorId], references: [id])
+
+  @@index([scope, createdAt])
+  @@index([programId, createdAt])
+}
