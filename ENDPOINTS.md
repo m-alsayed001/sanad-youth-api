@@ -2,7 +2,7 @@
 
 Every endpoint of the Sanad Youth API: who can call it, what to send, what it does, and what it returns.
 
-- **Base URL:** `http://localhost:3000/api`
+- **Base URL:** `http://localhost:3001/api`
 - **Auth:** every endpoint except register and login needs the header `Authorization: Bearer <accessToken>`. The token comes from `POST /auth/login`.
 - **Roles:** `YOUTH` (student), `SUPERVISOR`, `ADMIN`.
 - **Owner** means "the supervisor who runs this program". An admin can do everything an owner can.
@@ -272,7 +272,7 @@ PENDING ──accept (admin)──> ACCEPTED ──cancel (student)──> CANCE
 ## 8. Public files
 
 ### `GET /uploads/images/<file>`: program images
-- **Who:** public (no token, and no `/api` prefix). For example: `http://localhost:3000/uploads/images/<uuid>.png`.
+- **Who:** public (no token, and no `/api` prefix). For example: `http://localhost:3001/uploads/images/<uuid>.png`.
 - Only images are public. CVs and materials are **never** served publicly; they're only available through the protected download endpoints above.
 
 ---

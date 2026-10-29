@@ -20,7 +20,7 @@ async function bootstrap() {
   // only program images are public; CVs and materials go through authorized endpoints
   app.useStaticAssets('uploads/images', { prefix: '/uploads/images' });
 
-  const port = Number(process.env.PORT ?? 3000);
+  const port = Number(process.env.PORT ?? 3001);
   await app.listen(port);
   console.log(`Sanad Youth API running on http://localhost:${port}/api`);
 }

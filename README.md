@@ -14,7 +14,7 @@ docker compose up -d          # PostgreSQL on localhost:5433 (user/pass: sanad/s
 cp .env.example .env          # then set JWT_SECRET
 npm run db:migrate            # creates the tables
 npm run db:seed               # demo data
-npm run start:dev             # http://localhost:3000/api
+npm run start:dev             # http://localhost:3001/api
 ```
 
 | Script | What it does |
@@ -24,8 +24,6 @@ npm run start:dev             # http://localhost:3000/api
 | `npm run test:api` | runs the whole Postman collection from the terminal (79 requests, 106 assertions, all 35 endpoints) |
 | `npm run test:last-seat` | **20 youth apply to a 1-seat program at the same instant** |
 
-> Port 3000 busy? Set `PORT=3001` in `.env`, then run the tests with
-> `npm run test:api -- --env-var baseUrl=http://localhost:3001/api` and `API_URL=http://localhost:3001/api npm run test:last-seat`.
 
 **Seeded accounts**
 

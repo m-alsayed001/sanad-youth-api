@@ -2,7 +2,7 @@
 // Expected: exactly 1 x 201 Created, (N-1) x 409 "No seats left", availableSeats = 0, never negative.
 // Usage:  npm run test:last-seat            (default 20 youth)
 //         node scripts/last-seat-test.mjs 25
-const BASE = process.env.API_URL ?? 'http://localhost:3000/api';
+const BASE = process.env.API_URL ?? 'http://localhost:3001/api';
 const N = Math.min(Number(process.argv[2] ?? 20), 30); // seed has 30 youth accounts
 
 async function call(method, path, token, body) {
